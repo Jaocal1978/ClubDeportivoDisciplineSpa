@@ -33,7 +33,7 @@ app.get("/agregarDeporte", (req, res) =>
 {
     const { nombre, precio } = req.query;
 
-    if(nombre != "" || precio != "")
+    if(nombre && precio)
     {
         const ventas = {
             nombre : nombre,
@@ -91,7 +91,7 @@ app.get("/editar", (req, res) =>
 {
     const { txtnombre, txtprecio, nombreActual, precioActual } = req.query;
 
-    if(txtnombre != "" || txtprecio != "")
+    if(txtnombre && txtprecio && nombreActual && precioActual)
     {
         
         fs.readFile("./ventas/deportes.json", "utf8")
@@ -147,30 +147,57 @@ app.get("/eliminar/:dato", (req, res) =>
 {
     let dato = req.params.dato;
 
-    fs.readFile("./ventas/deportes.json", "utf8")
-    .then(data => 
+    if(dato)
     {
-        let jsonDeportes = JSON.parse(data);
-
-        for(let i = 0; i < jsonDeportes.deportes.length; i++) 
+        fs.readFile("./ventas/deportes.json", "utf8")
+        .then(data => 
         {
-            if(jsonDeportes.deportes[i].nombre == dato) 
+            let jsonDeportes = JSON.parse(data);
+
+            for(let i = 0; i < jsonDeportes.deportes.length; i++) 
             {
-                jsonDeportes.deportes.splice(i, 1);
-                break;
+                if(jsonDeportes.deportes[i].nombre == dato) 
+                {
+                    jsonDeportes.deportes.splice(i, 1);
+                    break;
+                }
+                else
+                {
+                    res.render("alertDanger",
+                    {
+                        icono : "fa-circle-xmark",
+                        titulo : "Atención.",
+                        mensaje : "Dato no existe.",
+                        ruta : "ver"
+                    })
+                }
             }
-        }
 
-        fs.writeFile("./ventas/deportes.json", JSON.stringify(jsonDeportes))
-        .then(() =>
-        {
-            res.render("alertDanger",
+            fs.writeFile("./ventas/deportes.json", JSON.stringify(jsonDeportes))
+            .then(() =>
             {
-                icono : "fa-solid fa-ban",
-                titulo : "Eliminar.",
-                mensaje : "Deporte eliminado correctamente.",
-                ruta : "ver"
+                res.render("alertDanger",
+                {
+                    icono : "fa-solid fa-ban",
+                    titulo : "Eliminar.",
+                    mensaje : "Deporte eliminado correctamente.",
+                    ruta : "ver"
+                })
             })
         })
-    })
+    }
+    else
+    {
+        res.render("alertDanger",
+        {
+            icono : "fa-circle-xmark",
+            titulo : "Atención.",
+            mensaje : "Faltan datos, llene los campos requeridos.",
+            ruta : "ver"
+        })
+    }
 })
+
+app.get("*", (req, res) => {
+    res.send("<center><h1>Esta página no existe... </h1></center>");
+});
