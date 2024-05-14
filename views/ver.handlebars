@@ -1,0 +1,39 @@
+<div class="container">
+    <h5 class="fs-2 pt-3 pb-3 text-center"><i class="fa-solid fa-medal"></i> Deportes Registrados</h5>
+    <a href="/agregar" class="btn btn-success" class="col pb-3 pt-3 fs-3">
+        <i class="fa-solid fa-file-circle-plus"></i> Nuevo
+    </a>
+    <a href="/" class="btn btn-primary" class="col pb-3 pt-3 fs-3">
+        <i class="fa-solid fa-house-medical-flag"></i> Inicio
+    </a>
+    
+    <div class="row">
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ventas}}
+                    <tr>
+                        <td>{{this.nombre}}</td>
+                        <td>{{this.precio}}</td>
+                        <td>
+                            <button class="btn btn-warning" onclick='fntEditar("{{this.nombre}}","{{this.precio}}")' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <a href="/eliminar/{{this.nombre}}" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i></button>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

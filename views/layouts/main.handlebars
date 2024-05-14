@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <script src="https://kit.fontawesome.com/c928e1895b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    {{{body}}}
+
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa-solid fa-person-running"></i> Editar Deporte</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <form action="/editar">
+                                <input type="hidden" id="nombreActual" name="nombreActual" value="">
+                                <input type="hidden" id="precioActual" name="precioActual" value="">
+                                <div class="col pb-3">
+                                    <label for="nombre" class="pb-2">Nombre</label>
+                                    <input type="text" class="form-control" name="txtnombre" id="txtnombre" value="">
+                                </div>
+                                <div class="col pb-3">
+                                    <label for="precio" class="pb-2">Precio</label>
+                                    <input type="text" class="form-control" name="txtprecio" id="txtprecio" value="">
+                                </div>
+                                <div class="col pt-3 pb-3">
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fa-regular fa-circle-xmark"></i> Cerrar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/popper/popper.js"></script>
+
+    <script>
+        function fntEditar(nombre, precio)
+        {
+            document.querySelector('#nombreActual').value = nombre;
+            document.querySelector('#precioActual').value = precio;
+            document.querySelector('#txtnombre').value = nombre;
+            document.querySelector('#txtprecio').value = precio;
+        }
+
+        function fntVolver()
+        {
+            window.location.reload();
+        }
+
+    </script>
+    
+</body>
+</html>

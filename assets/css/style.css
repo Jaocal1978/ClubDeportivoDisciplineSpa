@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background: #02244e;
+    color: #ffffff;
+    display: block;
+    display: inline-block
+}
+
+section{
+    background-image: url(/assets/img/front-page.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 580px;
+}
+
+.tamanoSuccess{
+    font-size: 250px;
+    color : #097101
+}
+
+.tamanoDanger{
+    font-size: 250px;
+    color: #ff3c00
+}
